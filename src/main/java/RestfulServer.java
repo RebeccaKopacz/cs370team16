@@ -39,7 +39,7 @@ public class RestfulServer {
                 + "\"ip\":\"" + request.ip() + "\", \n"
                 + "\"params\":\"" + request.params() + "\", \n"
                 + "\"pathInfo\":\"" + request.pathInfo() + "\", \n"
-                + "\"serverPort\":\"" + request.serverPort() + "\", \n"
+                + "\"serverPort\":\"" + request.port() + "\", \n"
                 + "\"protocol\":\"" + request.protocol() + "\", \n"
                 + "\"queryParams\":\"" + request.queryParams() + "\", \n"
                 + "\"requestMethod\":\"" + request.requestMethod() + "\", \n"
@@ -53,6 +53,6 @@ public class RestfulServer {
     }
 
     public static void main(String[] programArgs){
-        RestfulServer restfulServer = new RestfulServer()(); // Never returns!
+        RestfulServer restfulServer = new RestfulServer(); // Never returns!
     }
 }
