@@ -26,9 +26,9 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <dexcriptorRefs>
+                    <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </dexcriptorRefs>
+                    </descriptorRefs>
                 </configuration>
             </plugin>
         </plugins>
