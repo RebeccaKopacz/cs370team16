@@ -20,7 +20,8 @@ public class RestfulServer {
 
     private void processRestfulApiRequests(){
         Spark.post("/", (req,res)->{
-            return req.body() + "\n";
+            System.out.println(req.body());
+            return null;
         });
     }
 
