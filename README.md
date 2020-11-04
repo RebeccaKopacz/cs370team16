@@ -11,6 +11,8 @@ mvn package
 Run:
 java -cp target/cs370team16-1.0-SNAPSHOT-jar-with-dependencies.jar RestfulServer
 
+Using the root path "/" route for the HTTP POST method
+
 DOCKER
 ---------------
 A “Docker” section, which contains instructions for building your Docker image,
