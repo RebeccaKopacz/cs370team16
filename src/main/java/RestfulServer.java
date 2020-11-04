@@ -19,10 +19,8 @@ public class RestfulServer {
     }
 
     private void processRestfulApiRequests(){
-        Spark.post("/", (req,res)->{
-            log.info(req.body());
-            return "";
-        });
+        Spark.get("/", this::echoRequest);
+        Spark.post("/", this::logPostRequest);
     }
 
     private String echoRequest(Request request, Response response){
@@ -31,6 +29,15 @@ public class RestfulServer {
         response.status(200);
 
         return HttpRequestToJson(request);
+    }
+
+    private String logPostRequest(Request request, Response response){
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        response.status(200);
+
+        log.info(request.body());
+        return "";
     }
 
     private String HttpRequestToJson(Request request){
