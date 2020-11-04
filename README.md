@@ -23,5 +23,5 @@
 ## Docker 
 
 - `$ docker build -t <tagname> .`
-- `$ docker run -it --name==maven-test -p 8080:8080 maven-test`
+- `$ docker run -it --name=<tagname> -p 8080:8080 <tagname>`
 
