@@ -1,7 +1,11 @@
-FROM ubuntu:latest
+FROM maven:latest AS base
 
-RUN apt-get update
-RUN apt-get install curl -y
-RUN git clone https://github.com/RebeccaKopacz/cs370team16.git
+RUN mkdir -p /code
+WORKDIR /code
 
-CMD "curl"
+COPY ./src ./src
+COPY ./pom.xml ./pom.xml
+
+RUN mvn clean && mvn package
+
+ENTRYPOINT ["java", "-cp", "./target/cs370team16-1.0-SNAPSHOT-jar-with-dependencies.jar", "RestfulServer"]

@@ -17,3 +17,7 @@ DOCKER
 ---------------
 A “Docker” section, which contains instructions for building your Docker image,
 and more importantly, how to run the image as a container. 
+
+docker rm maven-test
+docker build -t maven-test
+docker run -it --name=maven-test -p 8080:8080 maven-test
