@@ -28,43 +28,52 @@ public class Counter {
 
 
     public static void main(String args[]) throws IOException{
-        File file = new File("file.txt");
-        String [] words = null;
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-        String line;
+        if (args.length != 1) {
+            System.out.println("Incorrect Number of Arguments");
+            return;
+        }
+        else {
+            try {
+                File file = new File(args[0]);
+                String[] words = null;
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String line;
 
-        int totalWordCount = 0;
-        Map<String,Integer> map=new TreeMap<>();
+                int totalWordCount = 0;
+                Map<String, Integer> map = new TreeMap<>();
 
-        while ((line = br.readLine()) != null) {
-            words = line.replaceAll("[^-0-9a-zA-Z' ]", "").toLowerCase().split(" ");
-            for(int i = 0; i < words.length; i++) {
-                if(words[i].length() < 1);
-                else if (map.containsKey(words[i])) {
-                    map.put(words[i], map.get(words[i])+1);
-                    totalWordCount++;
+                while ((line = br.readLine()) != null) {
+                    words = line.replaceAll("[^-0-9a-zA-Z' ]", "").toLowerCase().split(" ");
+                    for (int i = 0; i < words.length; i++) {
+                        if (words[i].length() < 1) ;
+                        else if (map.containsKey(words[i])) {
+                            map.put(words[i], map.get(words[i]) + 1);
+                            totalWordCount++;
+                        } else {
+                            map.put(words[i], 1);
+                            totalWordCount++;
+                        }
+                    }
                 }
-                else {
-                    map.put(words[i],1);
-                    totalWordCount++;
+                int uniqueWords = map.size();
+                Map<String, Integer> sortedMap = sortByValues(map);
+
+                System.out.println("File: " + file);
+                System.out.println("TOTAL WORD COUNT: " + totalWordCount);
+                System.out.println("TOTAL UNIQUE WORDS: " + uniqueWords + "\n");
+                System.out.println("COUNT \t |  WORD");
+                int i = 0;
+                for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+                    if (i < 50) {
+                        System.out.println(entry.getValue() + "\t |  " + entry.getKey());
+                    }
+                    i++;
                 }
+                fr.close();
+            } catch ( FileNotFoundException e ) {
+                System.out.println("File Not Found");
             }
         }
-        int uniqueWords = map.size();
-        Map<String, Integer> sortedMap = sortByValues(map);
-
-        System.out.println("TOTAL WORD COUNT: " + totalWordCount);
-        System.out.println("TOTAL UNIQUE WORDS: " + uniqueWords + "\n");
-        System.out.println("COUNT \t |  WORD");
-        int i = 0;
-        for(Map.Entry<String, Integer> entry: sortedMap.entrySet()) {
-            if(i < 50) {
-                System.out.println(entry.getValue() + "\t |  " + entry.getKey());
-            }
-            i++;
-        }
-
-        fr.close();
     }
 }
