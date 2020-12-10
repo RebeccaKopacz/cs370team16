@@ -40,8 +40,6 @@ public class RestfulServer {
         String[] arg = {request.body()};
         Counts.main(arg);
 
-        System.out.println("HERE");
-
         log.info(request.body());
         return request.body();
 
