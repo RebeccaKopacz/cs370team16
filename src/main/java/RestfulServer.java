@@ -1,3 +1,4 @@
+import org.json.JSONObject;
 import spark.Spark;
 import spark.Request;
 import spark.Response;
@@ -36,8 +37,14 @@ public class RestfulServer {
         response.header("Access-Control-Allow-Origin", "*");
         response.status(200);
 
+        String[] arg = {request.body()};
+        Counts.main(arg);
+
+        System.out.println("HERE");
+
         log.info(request.body());
-        return "";
+        return request.body();
+
     }
 
     private String HttpRequestToJson(Request request){
@@ -70,4 +77,5 @@ public class RestfulServer {
         RestfulServer restfulServer = new RestfulServer(); // Never returns
 
     }
+
 }
